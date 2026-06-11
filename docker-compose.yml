@@ -1,0 +1,59 @@
+services:
+
+  users:
+    build: ./users
+    ports:
+      - "5001:5001"
+    environment:
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-timbu1901}
+      - PORT=5001
+
+  products-primary:
+    build: ./products
+    ports:
+      - "5002:5002"
+    environment:
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-timbu1901}
+      - ROLE=primary
+      - DATA_FILE=products_primary.json
+      - PEER_URL=http://products-replica:5002
+      - PORT=5002
+    depends_on:
+      - products-replica
+
+  products-replica:
+    build: ./products
+    ports:
+      - "5004:5002"
+    environment:
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-timbu1901}
+      - ROLE=replica
+      - DATA_FILE=products_replica.json
+      - PORT=5002
+
+  orders:
+    build: ./orders
+    ports:
+      - "5003:5003"
+    environment:
+      - JWT_SECRET_KEY=${JWT_SECRET_KEY:-timbu1901}
+      - PRODUCTS_URL=http://products-primary:5002
+      - PORT=5003
+    depends_on:
+      - products-primary
+
+  gateway:
+    build: ./gateway
+    ports:
+      - "5000:5000"
+    environment:
+      - USERS_URL=http://users:5001
+      - PRODUCTS_PRIMARY_URL=http://products-primary:5002
+      - PRODUCTS_REPLICA_URL=http://products-replica:5002
+      - ORDERS_URL=http://orders:5003
+      - HEARTBEAT_INTERVAL=5
+    depends_on:
+      - users
+      - products-primary
+      - products-replica
+      - orders

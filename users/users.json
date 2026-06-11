@@ -3,18 +3,28 @@
         "id": 1,
         "nome": "Ivan Rocha",
         "email": "ivan@gmail.com",
-        "senha": "8d969eef6ecad3c29a3a629280e686cff8cae2f7b8b4e6f6f9b8f4c5d6e7f8a9"
+        "role": "user",
+        "senha": "$2b$12$ZY7DJg7LLZyW1db1f3yHTeyzBMso8kpTJukIVfI2xlItTPp7VmE0."
     },
     {
         "id": 2,
         "nome": "João Silva",
         "email": "joao@gmail.com",
-        "senha": "5e884898da28047151d0e56f8dc6292773603d0d6aabbdd38c5f6f4e6b6f7d8c"
+        "role": "user",
+        "senha": "$2b$12$ZY7DJg7LLZyW1db1f3yHTeyzBMso8kpTJukIVfI2xlItTPp7VmE0."
     },
     {
         "id": 3,
         "nome": "Maria Souza",
         "email": "maria@gmail.com",
-        "senha": "2bb80d537b1da3e38bd30361aa855686bde0baefb8c0c2f6a7f4e5d3c2b1a098"
+        "role": "user",
+        "senha": "$2b$12$ZY7DJg7LLZyW1db1f3yHTeyzBMso8kpTJukIVfI2xlItTPp7VmE0."
+    },
+    {
+        "id": 4,
+        "nome": "Administrador",
+        "email": "admin@ecommerce.com",
+        "role": "admin",
+        "senha": "$2b$12$gV2znzDzwSbKnn0U5C7BPu.jD.xazFvAaoFnAY2ndSIzHWRZbUe52"
     }
 ]
